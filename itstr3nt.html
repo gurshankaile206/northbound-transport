@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itstr3nt | DJ & Producer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #1a1a1a;
+            --accent: #ff0055;
+            --accent-2: #00f5ff;
+            --text: #ffffff;
+            --text-dim: #888888;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(255, 0, 85, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(0, 245, 255, 0.1) 0%, transparent 50%),
+                var(--primary);
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+        }
+
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(60px, 15vw, 180px);
+            font-weight: 900;
+            letter-spacing: 10px;
+            line-height: 0.9;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-dim) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(255,0,85,0.3)); }
+            to { filter: drop-shadow(0 0 40px rgba(0,245,255,0.3)); }
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 18px;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 40px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255,0,85,0.3);
+        }
+
+        .cta-btn {
+            padding: 18px 50px;
+            background: linear-gradient(135deg, var(--accent) 0%, #ff0080 100%);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 14px;
+            border-radius: 50px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255,0,85,0.4);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 20px;
+            height: 20px;
+            border-bottom: 2px solid var(--accent);
+            border-right: 2px solid var(--accent);
+            transform: rotate(45deg);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* About Section */
+        .about {
+            padding: 120px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 50px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            margin-bottom: 40px;
+        }
+
+        .section-title span {
+            color: var(--accent);
+        }
+
+        .about p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-dim);
+            margin-bottom: 30px;
+        }
+
+        /* Music Section */
+        .music {
+            padding: 100px 20px;
+            background: var(--secondary);
+        }
+
+        .music-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .track-card {
+            background: var(--primary);
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .track-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .track-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        }
+
+        .track-art {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .track-art::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .track-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .track-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-dim);
+            font-size: 13px;
+        }
+
+        .play-btn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 5px;
+        }
+
+        .play-btn:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Events Section */
+        .events {
+            padding: 100px 20px;
+        }
+
+        .events-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .event-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: background 0.3s;
+        }
+
+        .event-item:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .event-date {
+            text-align: center;
+            padding: 15px 20px;
+            background: var(--secondary);
+            border-radius: 10px;
+            min-width: 80px;
+        }
+
+        .event-date .month {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        .event-date .day {
+            font-family: 'Oswald', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .event-info h4 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .event-info p {
+            color: var(--text-dim);
+            font-size: 14px;
+        }
+
+        .event-venue {
+            text-align: right;
+        }
+
+        .event-venue h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .event-venue p {
+            color: var(--text-dim);
+            font-size: 13px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 20px;
+            background: var(--secondary);
+            text-align: center;
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: 40px auto 0;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 18px 20px;
+            margin-bottom: 15px;
+            background: var(--primary);
+            border: 2px solid rgba(255,255,255,0.1);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--accent) 0%, #ff0080 100%);
+            border: none;
+            color: white;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-form button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255,0,85,0.4);
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo span {
+            color: var(--accent);
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dim);
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        footer p {
+            color: var(--text-dim);
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                letter-spacing: 5px;
+            }
+
+            .hero p {
+                letter-spacing: 4px;
+                font-size: 14px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .event-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .event-venue {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">ITSTR<span>3</span>NT</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#music">Music</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>ITSTR<span>3</span>NT</h1>
+        <p>DJ & Producer</p>
+        
+        <div class="social-links">
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" title="SoundCloud"><i class="fab fa-soundcloud"></i></a>
+            <a href="#" title="Spotify"><i class="fab fa-spotify"></i></a>
+            <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+
+        <a href="#music" class="cta-btn">Listen Now</a>
+
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2 class="section-title">ABOUT <span>ME</span></h2>
+        <p>
+            Born and raised in the Pacific Northwest, Itstr3nt has been making waves in the electronic music scene since 2019. 
+            Known for high-energy sets that blend bass-heavy beats with melodic elements, this DJ brings a unique sound that 
+            connects with crowds on a deep level.
+        </p>
+        <p>
+            From intimate club nights to massive festival stages, Itstr3nt delivers unforgettable experiences through 
+            carefully crafted mixes that take audiences on a journey. Drawing inspiration from artists across the 
+            electronic spectrum, the sound is constantly evolving.
+        </p>
+        <p>
+            Based in Washington State, available for bookings worldwide. Let's create something unforgettable together.
+        </p>
+    </section>
+
+    <!-- Music Section -->
+    <section class="music" id="music">
+        <h2 class="section-title" style="text-align: center;">LATEST <span>RELEASES</span></h2>
+        
+        <div class="music-grid">
+            <div class="track-card">
+                <div class="track-art">🎵</div>
+                <div class="track-title">Midnight Dreams</div>
+                <div class="track-meta">
+                    <span>Original Mix</span>
+                    <span>4:32</span>
+                </div>
+                <button class="play-btn"><i class="fas fa-play"></i> Stream</button>
+            </div>
+
+            <div class="track-card">
+                <div class="track-art">🔥</div>
+                <div class="track-title">Bass Drop</div>
+                <div class="track-meta">
+                    <span>Original Mix</span>
+                    <span>3:45</span>
+                </div>
+                <button class="play-btn"><i class="fas fa-play"></i> Stream</button>
+            </div>
+
+            <div class="track-card">
+                <div class="track-art">⚡</div>
+                <div class="track-title">Electric Nights</div>
+                <div class="track-meta">
+                    <span>Remix</span>
+                    <span>5:10</span>
+                </div>
+                <button class="play-btn"><i class="fas fa-play"></i> Stream</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events" id="events">
+        <h2 class="section-title" style="text-align: center;">UPCOMING <span>SHOWS</span></h2>
+        
+        <div class="events-list">
+            <div class="event-item">
+                <div class="event-date">
+                    <div class="month">MAR</div>
+                    <div class="day">22</div>
+                </div>
+                <div class="event-info">
+                    <h4>Neon Nights</h4>
+                    <p>Guest DJ Set</p>
+                </div>
+                <div class="event-venue">
+                    <h4>Club Voltage</h4>
+                    <p>Seattle, WA</p>
+                </div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-date">
+                    <div class="month">APR</div>
+                    <div class="day">05</div>
+                </div>
+                <div class="event-info">
+                    <h4>Bass Festival</h4>
+                    <p>Main Stage</p>
+                </div>
+                <div class="event-venue">
+                    <h4>Pioneer Square</h4>
+                    <p>Portland, OR</p>
+                </div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-date">
+                    <div class="month">APR</div>
+                    <div class="day">18</div>
+                </div>
+                <div class="event-info">
+                    <h4>Underground Sessions</h4>
+                    <p>Resident DJ</p>
+                </div>
+                <div class="event-venue">
+                    <h4>The Warehouse</h4>
+                    <p>Spokane, WA</p>
+                </div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-date">
+                    <div class="month">MAY</div>
+                    <div class="day">02</div>
+                </div>
+                <div class="event-info">
+                    <h4>Summer Kickoff</h4>
+                    <p>Special Guest</p>
+                </div>
+                <div class="event-venue">
+                    <h4>Sunset Beach Club</h4>
+                    <p>San Diego, CA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">GET IN <span>TOUCH</span></h2>
+        <p style="color: var(--text-dim);">Bookings, collaborations, or just to say hello</p>
+        
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks for reaching out! We will get back to you soon.');">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <textarea placeholder="Your Message"></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">ITSTR<span>3</span>NT</div>
+        
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-soundcloud"></i></a>
+            <a href="#"><i class="fab fa-spotify"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        
+        <p>© 2026 Itstr3nt. All rights reserved.</p>
+    </footer>
+</body>
+</html>
