@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Northbound Transport Inc.</title>
+  <title>Northbound Transport</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0b0b0b;
-      --panel: #131313;
-      --border: #1f1f1f;
-      --text: #f8f8f8;
-      --muted: #b0b0b0;
-      --accent: #d71920;
-      --accent-light: #ff4b55;
+      --ink: #101118;
+      --steel: #1b1d2a;
+      --slate: #2b2e40;
+      --cloud: #f5f6fa;
+      --muted: #7f8294;
+      --accent: #f04a3a;
+      --accent-light: #ff7a6d;
     }
 
     * {
@@ -26,57 +26,37 @@
 
     body {
       font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-      border-radius: 18px;
+      background: var(--cloud);
+      color: var(--ink);
+      line-height: 1.7;
     }
 
     .shell {
       width: min(1180px, 92vw);
       margin: 0 auto;
-      padding: 2.5rem 0 4rem;
+      padding-bottom: 4rem;
     }
 
     header {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: clamp(1.5rem, 4vw, 3.5rem);
+      background: linear-gradient(115deg, var(--steel), var(--slate));
+      color: #fff;
+      border-radius: 28px;
+      padding: clamp(1.75rem, 5vw, 4rem);
+      margin: 2.5rem 0 2rem;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
+      box-shadow: 0 40px 85px rgba(16, 17, 24, 0.4);
     }
 
     .hero-text h1 {
-      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
       margin-bottom: 1rem;
     }
 
     .hero-text p {
-      color: var(--muted);
+      color: rgba(255, 255, 255, 0.85);
       margin-bottom: 1.5rem;
-    }
-
-    .badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .badge {
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 0.35rem 1.1rem;
-      letter-spacing: 0.08em;
-      font-size: 0.78rem;
-      text-transform: uppercase;
     }
 
     .cta-row {
@@ -87,54 +67,55 @@
 
     .btn {
       border-radius: 999px;
-      border: 1px solid var(--border);
-      padding: 0.85rem 1.8rem;
+      padding: 0.85rem 1.9rem;
+      border: none;
       font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      background: transparent;
-      color: var(--text);
+      letter-spacing: 0.04em;
       cursor: pointer;
+      text-transform: uppercase;
     }
 
     .btn-primary {
       background: var(--accent);
-      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    header img {
+      width: 100%;
+      border-radius: 22px;
+      object-fit: cover;
+      max-height: 320px;
     }
 
     section {
-      margin-top: 2rem;
-      background: var(--panel);
-      border: 1px solid var(--border);
+      background: #fff;
       border-radius: 24px;
       padding: clamp(1.5rem, 4vw, 3rem);
+      margin-bottom: 1.75rem;
+      box-shadow: 0 25px 70px rgba(18, 18, 18, 0.08);
     }
 
     section h2 {
-      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
       margin-bottom: 0.75rem;
+      color: var(--steel);
     }
 
     .section-lead {
       color: var(--muted);
-      margin-bottom: 1.5rem;
-    }
-
-    ul {
-      list-style: none;
-      color: var(--muted);
-    }
-
-    ul li::before {
-      content: "•";
-      color: var(--accent-light);
-      margin-right: 0.45rem;
+      margin-bottom: 1.25rem;
     }
 
     .grid-two,
-    .stat-grid,
     .service-grid,
-    .contact-grid {
+    .contact-grid,
+    .stat-grid {
       display: grid;
       gap: 1.5rem;
     }
@@ -144,22 +125,39 @@
       align-items: center;
     }
 
-    .stat-grid,
     .service-grid,
-    .contact-grid {
+    .contact-grid,
+    .stat-grid {
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     }
 
     .card {
-      background: #0f0f0f;
-      border: 1px solid var(--border);
+      border: 1px solid #ececf3;
       border-radius: 18px;
       padding: 1.2rem;
+      background: var(--cloud);
     }
 
-    .stat-value {
-      font-size: 2rem;
-      font-weight: 600;
+    ul {
+      list-style: none;
+      color: var(--muted);
+    }
+
+    ul li {
+      margin-bottom: 0.45rem;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    ul li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      position: absolute;
+      left: 0;
+      top: 0.55rem;
     }
 
     .stat-label {
@@ -169,10 +167,17 @@
       color: var(--muted);
     }
 
+    .stat-value {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--steel);
+      margin: 0.35rem 0;
+    }
+
     .contact-card h3 {
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--muted);
       margin-bottom: 0.5rem;
     }
@@ -180,12 +185,12 @@
     footer {
       text-align: center;
       color: var(--muted);
-      margin-top: 2.5rem;
+      margin-top: 2rem;
       font-size: 0.85rem;
     }
 
     a {
-      color: var(--accent-light);
+      color: var(--accent);
       text-decoration: none;
     }
   </style>
@@ -194,138 +199,115 @@
   <div class="shell">
     <header>
       <div class="hero-text">
-        <div class="badges">
-          <span class="badge">Northbound Transport Inc.</span>
-          <span class="badge">USDOT 2839776</span>
-          <span class="badge">MC 954106</span>
-        </div>
-        <h1>Asset-Based Truckload Capacity out of Washington</h1>
-        <p>Northbound Transport Inc. is a Puyallup-based interstate carrier moving general freight, beverages, and paper throughout the western United States. We keep freight simple—direct dispatch, experienced drivers, and consistent long-haul coverage.</p>
+        <p class="section-lead">Long-haul trucking · Puyallup, Washington</p>
+        <h1>Northbound Transport keeps freight flowing up and down the West Coast.</h1>
+        <p>We are a logistics-first trucking company based in Puyallup, WA. Our team handles long-haul and regional dry van moves with clear communication, dependable equipment, and operators who know the western corridors inside out.</p>
         <div class="cta-row">
-          <button class="btn btn-primary">Book a Load</button>
-          <button class="btn">Download Packet</button>
+          <button class="btn btn-primary">Book Capacity</button>
+          <button class="btn btn-secondary">Talk to Dispatch</button>
         </div>
       </div>
       <div>
-        <img src="https://images.unsplash.com/photo-1477414348463-c0eb7f1359b6?auto=format&fit=crop&w=900&q=80" alt="Long-haul truck driving through mountains" />
+        <img src="https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=1200&q=80" alt="Truck driving across a bridge at sunset" />
       </div>
     </header>
 
     <section>
-      <h2>About Northbound</h2>
-      <p class="section-lead">Interstate common carrier · For-hire property · FMCSA status: Active (snapshot 03/16/2026)</p>
+      <h2>What We Do</h2>
+      <p class="section-lead">Northbound Transport combines logistics planning with asset-based trucking to move freight without surprises.</p>
       <div class="grid-two">
         <div>
-          <p>Northbound Transport was founded in Puyallup, WA to serve shippers along the I-5 and I-90 corridors who needed reliable, asset-backed capacity. Every dispatch cycle runs through our local office, giving customers real human updates and flexible scheduling.</p>
+          <p>Whether you need a single long-haul move or repeating dedicated coverage, we bring a simple promise: trucks show up, loads move, updates stay honest. Our dispatch desk is based in Puyallup and is reachable around the clock.</p>
           <ul>
-            <li>Fleet: 7 tractors backed by 13 DOT-qualified drivers</li>
-            <li>MCS-150 form date: 08/19/2025 · Mileage year: 2024</li>
-            <li>Commodity focus: general freight, beverages, paper products</li>
-            <li>Operations: interstate lanes across the western region</li>
+            <li>Long-haul dry van freight across Western states</li>
+            <li>Regional truckload support throughout the Puget Sound</li>
+            <li>Flexible scheduling for night drops and weekend deliveries</li>
+            <li>Hands-on logistics coordination from pickup to final mile</li>
           </ul>
         </div>
         <div>
-          <div class="card">
-            <div class="stat-label">24-Month Inspections</div>
-            <div class="stat-value">21</div>
-            <p class="section-lead">Vehicle OOS: 33.3% · Driver OOS: 9.5% (SAFER snapshot)</p>
-            <p>We monitor roadside results and adjust maintenance schedules, driver coaching, and lane pairings accordingly.</p>
-          </div>
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80" alt="Semi truck driving on mountain highway" />
         </div>
       </div>
     </section>
 
     <section>
       <h2>Services</h2>
-      <p class="section-lead">Simple mix of truckload services designed for shippers that need dependable trailers, steady communication, and straight answers.</p>
       <div class="service-grid">
         <div class="card">
-          <h3>Dry Van Truckload</h3>
-          <p>Standard 53' vans for palletized consumer goods, beverages, and paper stock.</p>
+          <h3>Long-Haul Truckload</h3>
+          <p>Full truckload moves from Washington to major Western markets with proactive route planning.</p>
         </div>
         <div class="card">
           <h3>Dedicated Capacity</h3>
-          <p>Contracted lanes or seasonal programs with the same drivers and tractors.</p>
+          <p>Repeat schedules for shippers that need the same tractor and driver each week.</p>
         </div>
         <div class="card">
-          <h3>Regional Coverage</h3>
-          <p>Daily presence throughout Washington with reach into OR, ID, MT, NV, and CA.</p>
+          <h3>Regional Support</h3>
+          <p>Puget Sound to Inland Northwest coverage for replenishment, store deliveries, and project freight.</p>
         </div>
         <div class="card">
-          <h3>Power-Only Support</h3>
-          <p>Pull customer-owned trailers for time-critical projects and surge needs.</p>
+          <h3>Logistics Coordination</h3>
+          <p>Load planning, appointment setting, and status reporting handled by our in-house team.</p>
         </div>
       </div>
     </section>
 
     <section>
-      <h2>Coverage & Equipment</h2>
+      <h2>Coverage Snapshot</h2>
       <div class="grid-two">
         <div>
-          <p class="section-lead">14720 55th Ave Ct E · Puyallup, WA 98375</p>
+          <p class="section-lead">Headquartered in Puyallup, we operate across Washington, Oregon, California, Idaho, Montana, and Nevada.</p>
           <ul>
-            <li>Primary lanes: WA ↔ OR/CA/NV/ID/MT</li>
-            <li>Live load/unload, drop trailer upon request</li>
-            <li>Real-time dispatcher access for every shipment</li>
+            <li>Drivers experienced with mountain passes and coastal routes</li>
+            <li>Modern dry van trailers ready for palletized freight</li>
+            <li>Status updates before departure, at milestones, and on delivery</li>
           </ul>
         </div>
         <div>
-          <img src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=900&q=80" alt="Truck driving on highway at dusk" />
+          <div class="stat-grid">
+            <div class="card">
+              <p class="stat-label">Headquarters</p>
+              <p class="stat-value">Puyallup, WA</p>
+              <p>Serving shippers across the Pacific Northwest</p>
+            </div>
+            <div class="card">
+              <p class="stat-label">Focus</p>
+              <p class="stat-value">Long-Haul</p>
+              <p>Dry van freight for retail, manufacturing, and consumer brands</p>
+            </div>
+            <div class="card">
+              <p class="stat-label">Availability</p>
+              <p class="stat-value">24/7</p>
+              <p>Dispatch team monitors every load and keeps you updated</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <section>
-      <h2>Compliance Snapshot</h2>
-      <div class="stat-grid">
-        <div class="card">
-          <div class="stat-label">USDOT</div>
-          <div class="stat-value">2839776</div>
-          <p>Entity type: Carrier · Interstate · For-hire property</p>
-        </div>
-        <div class="card">
-          <div class="stat-label">MC Number</div>
-          <div class="stat-value">954106</div>
-          <p>Operating authority: Authorized for Property · Insurance on file</p>
-        </div>
-        <div class="card">
-          <div class="stat-label">Mileage</div>
-          <div class="stat-value">574k</div>
-          <p>Form MCS-150 reports 574,000 miles for 2024</p>
-        </div>
-        <div class="card">
-          <div class="stat-label">Drivers</div>
-          <div class="stat-value">13</div>
-          <p>Experienced long-haul professionals familiar with Pacific Northwest terrain</p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Contact & Dispatch</h2>
-      <p class="section-lead">Reach out for quotes, tenders, or paperwork.</p>
+      <h2>Contact</h2>
+      <p class="section-lead">Lock in capacity or request a quote.</p>
       <div class="contact-grid">
         <div class="card contact-card">
           <h3>Dispatch</h3>
           <p><strong>Phone:</strong> <a href="tel:12064580558">(206) 458-0558</a></p>
-          <p><strong>USDOT:</strong> 2839776</p>
-          <p><strong>MC:</strong> 954106</p>
+          <p><strong>Email:</strong> hello@northboundtransport.com</p>
         </div>
         <div class="card contact-card">
           <h3>Office</h3>
-          <p>14720 55th Ave Ct E<br>Puyallup, WA 98375</p>
-          <p><a href="https://maps.google.com/?q=14720+55th+Ave+Ct+E+Puyallup+WA+98375" target="_blank" rel="noreferrer noopener">Open in Google Maps</a></p>
+          <p>Northbound Transport<br>Puyallup, Washington</p>
         </div>
         <div class="card contact-card">
-          <h3>Paperwork</h3>
-          <p>Carrier packet, W-9, and COI delivered same day upon request.</p>
-          <p>Safety snapshot sourced from FMCSA (updated 03/16/2026).</p>
+          <h3>Get a Quote</h3>
+          <p>Send your lane details, pickup window, and equipment needs. We’ll reply with availability and pricing.</p>
         </div>
       </div>
     </section>
 
     <footer>
-      Data sourced from FMCSA SAFER Snapshot · Northbound Transport Inc. © 2026
+      © 2026 Northbound Transport · Long-haul logistics from Puyallup, Washington
     </footer>
   </div>
 </body>
