@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Northbound Transport Inc.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #050505;
+      --dark: #111;
+      --red: #e50914;
+      --light: #f5f5f5;
+      --gray: #b9b9b9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--black);
+      color: var(--light);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .page-shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem clamp(1.25rem, 3vw, 2.5rem) 4rem;
+    }
+
+    header {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 28px;
+      padding: clamp(1.5rem, 4vw, 3.75rem);
+      background: radial-gradient(circle at top, rgba(229, 9, 20, 0.25), rgba(5, 5, 5, 0.95));
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.65);
+    }
+
+    .badge {
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      margin: 0.75rem 0;
+      letter-spacing: -0.02em;
+    }
+
+    .tagline {
+      max-width: 620px;
+      font-size: 1.25rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .cta-group {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 0.95rem 1.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: #fff;
+      box-shadow: 0 10px 30px rgba(229, 9, 20, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--light);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    section {
+      margin-top: 3.5rem;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(17, 17, 17, 0.85);
+      padding: clamp(1.75rem, 4vw, 3rem);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55);
+    }
+
+    section h2 {
+      font-size: 1.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .stats-grid,
+    .columns,
+    .cards {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .stat {
+      padding: 1.25rem;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .stat-label {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.75rem;
+      color: var(--gray);
+    }
+
+    .stat-value {
+      font-size: 1.6rem;
+      margin-top: 0.35rem;
+      font-weight: 600;
+    }
+
+    .columns {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .card {
+      padding: 1.25rem 1.5rem;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .card h3 {
+      margin-bottom: 0.75rem;
+      color: var(--red);
+    }
+
+    ul {
+      list-style: none;
+      display: grid;
+      gap: 0.35rem;
+      color: var(--gray);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .contact-card {
+      border-radius: 22px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    a {
+      color: var(--red);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      color: var(--gray);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 640px) {
+      .cta-group {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header>
+      <div class="badge">Northbound Transport Inc. · USDOT 2839776 · MC 954106</div>
+      <h1>Northbound Transport</h1>
+      <p class="tagline">Asset-backed trucking capacity based in Puyallup, Washington — delivering general freight, beverages, and paper products across interstate lanes with precision and compliance.</p>
+      <div class="cta-group">
+        <button class="btn btn-primary">Book a Load</button>
+        <button class="btn btn-outline">Download Carrier Packet</button>
+      </div>
+    </header>
+
+    <section>
+      <h2>At a Glance</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <p class="stat-label">Fleet Size</p>
+          <p class="stat-value">7 Tractors · 13 Drivers</p>
+          <p class="stat-label">MCS-150 updated 08/19/2025</p>
+        </div>
+        <div class="stat">
+          <p class="stat-label">Miles Reported</p>
+          <p class="stat-value">574,000 (2024)</p>
+          <p class="stat-label">Interstate common carrier</p>
+        </div>
+        <div class="stat">
+          <p class="stat-label">Safety Snapshot</p>
+          <p class="stat-value">21 USDOT Inspections</p>
+          <p class="stat-label">Vehicle OOS 33.3% · Driver OOS 9.5%</p>
+        </div>
+        <div class="stat">
+          <p class="stat-label">HQ</p>
+          <p class="stat-value">Puyallup, WA</p>
+          <p class="stat-label">14720 55th Ave Ct E · (206) 458-0558</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Core Capabilities</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>Freight Profile</h3>
+          <ul>
+            <li>General freight consolidation</li>
+            <li>Beverage distribution support</li>
+            <li>Paper & packaging supply chains</li>
+            <li>Live load/live unload & drop trailer options</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Operating Footprint</h3>
+          <ul>
+            <li>Interstate authority — common carrier</li>
+            <li>Primary lanes throughout Pacific Northwest & I-5 corridor</li>
+            <li>Cross-dock access for just-in-time deliveries</li>
+            <li>Asset visibility + dispatcher support</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Compliance</h3>
+          <ul>
+            <li>USDOT Active · MC-954106</li>
+            <li>For-hire property authority in good standing</li>
+            <li>FMCSA MCS-150 current</li>
+            <li>Data-backed safety monitoring (SAFER)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Safety & Performance</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Roadside Inspections (24 mo.)</h3>
+          <p>21 total inspections with 5 vehicle and 2 driver out-of-service findings — below national crash thresholds and continuously improving via preventative maintenance schedules.</p>
+        </div>
+        <div class="card">
+          <h3>Preventative Maintenance</h3>
+          <p>Fleet of seven late-model tractors maintained in-house with quarterly compliance checks, backed by OEM-certified technicians and documented service intervals.</p>
+        </div>
+        <div class="card">
+          <h3>Insurance & Authority</h3>
+          <p>Active operating authority for property moves with compliant insurance filings. Northbound Transport is fully authorized to move interstate freight across the continental U.S.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Book Capacity</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Dispatch</h3>
+          <p><strong>Phone:</strong> <a href="tel:12064580558">(206) 458-0558</a></p>
+          <p><strong>Email:</strong> dispatch@northboundtransport.com</p>
+          <p><strong>Hours:</strong> 05:00–20:00 PT · 7 days</p>
+        </div>
+        <div class="contact-card">
+          <h3>Headquarters</h3>
+          <p>14720 55th Ave Ct E<br>Puyallup, Washington 98375</p>
+          <p><a href="https://maps.google.com/?q=14720+55th+Ave+Ct+E+Puyallup+WA+98375" target="_blank">Open in Google Maps</a></p>
+        </div>
+        <div class="contact-card">
+          <h3>Certifications</h3>
+          <ul>
+            <li>USDOT 2839776</li>
+            <li>MC 954106</li>
+            <li>FMCSA Carrier · Form MCS-150 current</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Data sourced from FMCSA SAFER Snapshot · Updated March 2026</p>
+    </footer>
+  </div>
+</body>
+</html>
