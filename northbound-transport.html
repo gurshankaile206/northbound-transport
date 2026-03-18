@@ -3,19 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Northbound Transport</title>
+  <title>Northbound Transport | Long-Haul Trucking</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #101118;
-      --steel: #1b1d2a;
-      --slate: #2b2e40;
-      --cloud: #f5f6fa;
-      --muted: #7f8294;
-      --accent: #f04a3a;
-      --accent-light: #ff7a6d;
+      --bg: #0d0d0d;
+      --surface: #161616;
+      --surface-hover: #1e1e1e;
+      --border: #2a2a2a;
+      --text: #f0f0f0;
+      --text-dim: #888;
+      --accent: #e63946;
+      --accent-hover: #ff4d5a;
     }
 
     * {
@@ -25,289 +26,413 @@
     }
 
     body {
-      font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--cloud);
-      color: var(--ink);
-      line-height: 1.7;
+      font-family: "DM Sans", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
     }
 
-    .shell {
-      width: min(1180px, 92vw);
+    .container {
+      max-width: 1220px;
       margin: 0 auto;
-      padding-bottom: 4rem;
+      padding: 0 clamp(1rem, 3vw, 2rem);
     }
 
-    header {
-      background: linear-gradient(115deg, var(--steel), var(--slate));
-      color: #fff;
-      border-radius: 28px;
-      padding: clamp(1.75rem, 5vw, 4rem);
-      margin: 2.5rem 0 2rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* Nav */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: "Oswald", sans-serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
       gap: 2rem;
-      box-shadow: 0 40px 85px rgba(16, 17, 24, 0.4);
+      list-style: none;
     }
 
-    .hero-text h1 {
-      font-size: clamp(2.4rem, 5.5vw, 4rem);
-      margin-bottom: 1rem;
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
     }
 
-    .hero-text p {
-      color: rgba(255, 255, 255, 0.85);
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* Hero */
+    .hero {
+      padding: clamp(3rem, 8vw, 6rem) 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      line-height: 1.1;
       margin-bottom: 1.5rem;
     }
 
-    .cta-row {
+    .hero p {
+      color: var(--text-dim);
+      font-size: 1.15rem;
+      margin-bottom: 2rem;
+      max-width: 480px;
+    }
+
+    .hero-badges {
       display: flex;
+      gap: 1rem;
       flex-wrap: wrap;
-      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .badge {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
     }
 
     .btn {
-      border-radius: 999px;
-      padding: 0.85rem 1.9rem;
-      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 6px;
       font-weight: 600;
-      letter-spacing: 0.04em;
+      font-size: 0.95rem;
       cursor: pointer;
-      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s;
     }
 
     .btn-primary {
       background: var(--accent);
       color: #fff;
+      border: none;
     }
 
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.12);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+    .btn-primary:hover {
+      background: var(--accent-hover);
     }
 
-    header img {
-      width: 100%;
-      border-radius: 22px;
-      object-fit: cover;
-      max-height: 320px;
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
     }
 
-    section {
-      background: #fff;
-      border-radius: 24px;
-      padding: clamp(1.5rem, 4vw, 3rem);
-      margin-bottom: 1.75rem;
-      box-shadow: 0 25px 70px rgba(18, 18, 18, 0.08);
+    .btn-outline:hover {
+      border-color: var(--text);
     }
 
-    section h2 {
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      margin-bottom: 0.75rem;
-      color: var(--steel);
-    }
-
-    .section-lead {
-      color: var(--muted);
-      margin-bottom: 1.25rem;
-    }
-
-    .grid-two,
-    .service-grid,
-    .contact-grid,
-    .stat-grid {
-      display: grid;
-      gap: 1.5rem;
-    }
-
-    .grid-two {
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      align-items: center;
-    }
-
-    .service-grid,
-    .contact-grid,
-    .stat-grid {
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    }
-
-    .card {
-      border: 1px solid #ececf3;
-      border-radius: 18px;
-      padding: 1.2rem;
-      background: var(--cloud);
-    }
-
-    ul {
-      list-style: none;
-      color: var(--muted);
-    }
-
-    ul li {
-      margin-bottom: 0.45rem;
-      padding-left: 1.2rem;
+    .hero-image {
       position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 16/10;
     }
 
-    ul li::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      position: absolute;
-      left: 0;
-      top: 0.55rem;
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .stat-label {
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.75rem;
-      color: var(--muted);
+    /* Sections */
+    section {
+      padding: clamp(3rem, 6vw, 5rem) 0;
+      border-bottom: 1px solid var(--border);
     }
 
-    .stat-value {
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: var(--steel);
-      margin: 0.35rem 0;
+    .section-header {
+      margin-bottom: 3rem;
     }
 
-    .contact-card h3 {
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.85rem;
-      color: var(--muted);
+    .section-header h2 {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
       margin-bottom: 0.5rem;
     }
 
-    footer {
-      text-align: center;
-      color: var(--muted);
-      margin-top: 2rem;
-      font-size: 0.85rem;
+    .section-header p {
+      color: var(--text-dim);
+      max-width: 560px;
     }
 
-    a {
+    /* Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .stat-box {
+      background: var(--surface);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .stat-box h3 {
+      font-family: "Oswald", sans-serif;
+      font-size: 2.4rem;
       color: var(--accent);
-      text-decoration: none;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-box p {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: border-color 0.2s;
+    }
+
+    .service-card:hover {
+      border-color: var(--accent);
+    }
+
+    .service-card h3 {
+      font-family: "Oswald", sans-serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .service-card p {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+    }
+
+    /* Coverage */
+    .coverage-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .coverage-list {
+      list-style: none;
+    }
+
+    .coverage-list li {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .coverage-list li:last-child {
+      border-bottom: none;
+    }
+
+    .coverage-list span {
+      color: var(--text-dim);
+    }
+
+    .coverage-map {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 320px;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 4rem;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    .cta-section h2 {
+      font-family: "Oswald", sans-serif;
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      color: var(--text-dim);
+      margin-bottom: 2rem;
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem 0;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-grid, .coverage-grid {
+        grid-template-columns: 1fr;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
   </style>
 </head>
 <body>
-  <div class="shell">
-    <header>
-      <div class="hero-text">
-        <p class="section-lead">Long-haul trucking · Puyallup, Washington</p>
-        <h1>Northbound Transport keeps freight flowing up and down the West Coast.</h1>
-        <p>We are a logistics-first trucking company based in Puyallup, WA. Our team handles long-haul and regional dry van moves with clear communication, dependable equipment, and operators who know the western corridors inside out.</p>
-        <div class="cta-row">
-          <button class="btn btn-primary">Book Capacity</button>
-          <button class="btn btn-secondary">Talk to Dispatch</button>
-        </div>
-      </div>
-      <div>
-        <img src="https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=1200&q=80" alt="Truck driving across a bridge at sunset" />
-      </div>
-    </header>
+  <div class="container">
+    <nav>
+      <div class="logo">NORTHBOUND <span>TRANSPORT</span></div>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#coverage">Coverage</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
 
-    <section>
-      <h2>What We Do</h2>
-      <p class="section-lead">Northbound Transport combines logistics planning with asset-based trucking to move freight without surprises.</p>
-      <div class="grid-two">
+    <section class="hero">
+      <div class="hero-grid">
         <div>
-          <p>Whether you need a single long-haul move or repeating dedicated coverage, we bring a simple promise: trucks show up, loads move, updates stay honest. Our dispatch desk is based in Puyallup and is reachable around the clock.</p>
-          <ul>
-            <li>Long-haul dry van freight across Western states</li>
-            <li>Regional truckload support throughout the Puget Sound</li>
-            <li>Flexible scheduling for night drops and weekend deliveries</li>
-            <li>Hands-on logistics coordination from pickup to final mile</li>
-          </ul>
-        </div>
-        <div>
-          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80" alt="Semi truck driving on mountain highway" />
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Services</h2>
-      <div class="service-grid">
-        <div class="card">
-          <h3>Long-Haul Truckload</h3>
-          <p>Full truckload moves from Washington to major Western markets with proactive route planning.</p>
-        </div>
-        <div class="card">
-          <h3>Dedicated Capacity</h3>
-          <p>Repeat schedules for shippers that need the same tractor and driver each week.</p>
-        </div>
-        <div class="card">
-          <h3>Regional Support</h3>
-          <p>Puget Sound to Inland Northwest coverage for replenishment, store deliveries, and project freight.</p>
-        </div>
-        <div class="card">
-          <h3>Logistics Coordination</h3>
-          <p>Load planning, appointment setting, and status reporting handled by our in-house team.</p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Coverage Snapshot</h2>
-      <div class="grid-two">
-        <div>
-          <p class="section-lead">Headquartered in Puyallup, we operate across Washington, Oregon, California, Idaho, Montana, and Nevada.</p>
-          <ul>
-            <li>Drivers experienced with mountain passes and coastal routes</li>
-            <li>Modern dry van trailers ready for palletized freight</li>
-            <li>Status updates before departure, at milestones, and on delivery</li>
-          </ul>
-        </div>
-        <div>
-          <div class="stat-grid">
-            <div class="card">
-              <p class="stat-label">Headquarters</p>
-              <p class="stat-value">Puyallup, WA</p>
-              <p>Serving shippers across the Pacific Northwest</p>
-            </div>
-            <div class="card">
-              <p class="stat-label">Focus</p>
-              <p class="stat-value">Long-Haul</p>
-              <p>Dry van freight for retail, manufacturing, and consumer brands</p>
-            </div>
-            <div class="card">
-              <p class="stat-label">Availability</p>
-              <p class="stat-value">24/7</p>
-              <p>Dispatch team monitors every load and keeps you updated</p>
-            </div>
+          <div class="hero-badges">
+            <span class="badge">Puyallup, WA</span>
+            <span class="badge">Long-Haul Experts</span>
+          </div>
+          <h1>Freight moves. We make it simple.</h1>
+          <p>Northbound Transport is a long-haul trucking company built on clear communication and reliable capacity. Based in Puyallup, Washington, we keep loads moving across the western states without the headaches.</p>
+          <div class="btn-group">
+            <a href="#contact" class="btn btn-primary">Book a Load</a>
+            <a href="#services" class="btn btn-outline">Our Services</a>
           </div>
         </div>
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80" alt="Semi truck on highway" />
+        </div>
       </div>
     </section>
 
     <section>
-      <h2>Contact</h2>
-      <p class="section-lead">Lock in capacity or request a quote.</p>
-      <div class="contact-grid">
-        <div class="card contact-card">
-          <h3>Dispatch</h3>
-          <p><strong>Phone:</strong> <a href="tel:12064580558">(206) 458-0558</a></p>
-          <p><strong>Email:</strong> hello@northboundtransport.com</p>
+      <div class="section-header">
+        <h2>Built for the Long Haul</h2>
+        <p>We operate as an asset-based carrier with tractors and trailers you can count on. No brokers, no middlemen — just direct dispatch and operators who know the western corridors.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <h3>WA</h3>
+          <p>Headquartered in Puyallup</p>
         </div>
-        <div class="card contact-card">
-          <h3>Office</h3>
-          <p>Northbound Transport<br>Puyallup, Washington</p>
+        <div class="stat-box">
+          <h3>7+</h3>
+          <p>Tractors in fleet</p>
         </div>
-        <div class="card contact-card">
-          <h3>Get a Quote</h3>
-          <p>Send your lane details, pickup window, and equipment needs. We’ll reply with availability and pricing.</p>
+        <div class="stat-box">
+          <h3>13</h3>
+          <p>Professional drivers</p>
         </div>
+        <div class="stat-box">
+          <h3>24/7</h3>
+          <p>Dispatch availability</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="section-header">
+        <h2>What We Offer</h2>
+        <p>Dry van truckload and logistics solutions for shippers who need dependable capacity and straight answers.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Long-Haul Truckload</h3>
+          <p>Full 53' dry van moves from Washington to California, Oregon, Idaho, Montana, Nevada and beyond.</p>
+        </div>
+        <div class="service-card">
+          <h3>Dedicated Fleet</h3>
+          <p>Contracted lanes with scheduled tractors and drivers for shippers needing consistent weekly coverage.</p>
+        </div>
+        <div class="service-card">
+          <h3>Regional Runs</h3>
+          <p>Shorter hauls throughout the Pacific Northwest for replenishment and store delivery needs.</p>
+        </div>
+        <div class="service-card">
+          <h3>Logistics Support</h3>
+          <p>Load planning, appointment coordination, and real-time status updates from our dispatch desk.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="coverage">
+      <div class="section-header">
+        <h2>Coverage Area</h2>
+        <p>We run regular lanes throughout the western United States with drivers who know the terrain.</p>
+      </div>
+      <div class="coverage-grid">
+        <ul class="coverage-list">
+          <li>Washington <span>Base</span></li>
+          <li>Oregon <span>Regular lanes</span></li>
+          <li>California <span>Regular lanes</span></li>
+          <li>Idaho <span>Available</span></li>
+          <li>Montana <span>Available</span></li>
+          <li>Nevada <span>Available</span></li>
+        </ul>
+        <div class="coverage-map">
+          <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=900&q=80" alt="Western US highway" style="width:100%;height:100%;object-fit:cover;border-radius:12px;opacity:0.7;" />
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="cta-section">
+        <h2>Ready to Move Freight?</h2>
+        <p>Reach out to our dispatch team for availability, quotes, or carrier packets.</p>
+        <a href="tel:12064580558" class="btn btn-primary">(206) 458-0558</a>
       </div>
     </section>
 
     <footer>
-      © 2026 Northbound Transport · Long-haul logistics from Puyallup, Washington
+      <p>Northbound Transport · Puyallup, Washington · © 2026</p>
     </footer>
   </div>
 </body>
